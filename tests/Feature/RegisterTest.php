@@ -1,0 +1,52 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Mail;
+use Tests\TestCase;
+
+class RegisterTest extends TestCase
+{
+    use RefreshDatabase;
+
+    /** @test */
+    public function it_should_be_able_to_register_as_a_new_user()
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+    }
+    
+    /** @test */
+    public function it_should_be_able_to_invite_someone_to_the_platform()
+    {
+        // Arrange
+        Mail::fake();
+
+        /** @var User $user */
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        // Act
+
+        $this->post('invite', [
+            'email' => 'novo@email.com'
+            ]);
+
+        // Assert
+        Mail::assertSent(Invitation::class, function ($mail) {
+            return $mail->hasTo('novo@email.com');
+        });
+
+        //criou um convite no banco de dados
+        $this->assertDatabaseHas('invitations', [
+            'email' => 'novo@email.com'
+        ]);
+    }
+}
