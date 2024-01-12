@@ -1,0 +1,6 @@
+GET https://brasilapi.com.br/api/cnpj/v1/06990590000123
+Accept: application/json
+
+###
+GET https://brasilapi.com.br/api/feriados/v1/2024
+Accept: application/json
