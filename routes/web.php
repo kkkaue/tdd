@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Todo;
 use App\Mail\Invitation;
 use App\Models\Invites;
-use App\Models\Todo;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,17 +21,6 @@ Route::post('invite', function () {
     ]);
 }); 
 
-Route::get('todo', function() {
-    return view('todo', ['todos' => Todo::all()]);
-})->name('todo.index');
+Route::get('todo', Todo\IndexController::class)->name('todo.index');
 
-Route::post('todo', function() {
-    Todo::query()
-        ->create([
-            'title' => request()->title,
-            'description' => request()->description,
-            'assigned_to_id' => request()->assigned_to,
-        ]);
-
-    return redirect()->route('todo.index');
-})->name('todo.store');
+Route::post('todo', Todo\CreateController::class)->name('todo.store');
