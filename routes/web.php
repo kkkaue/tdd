@@ -26,3 +26,5 @@ Route::get('todo', Todo\IndexController::class)->name('todo.index');
 Route::post('todo', Todo\CreateController::class)->name('todo.store');
 
 Route::put('todo/{todo}', Todo\UpdateController::class)->name('todo.update');
+
+Route::delete('todo/{todo}', Todo\DeleteController::class)->name('todo.destroy');
