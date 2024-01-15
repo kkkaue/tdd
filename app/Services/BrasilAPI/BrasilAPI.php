@@ -2,8 +2,8 @@
 
 namespace App\Services\BrasilAPI;
 
-use App\Exceptions\CNPJNotFound;
 use App\Services\BrasilAPI\Entities\CNPJ;
+use App\Services\BrasilAPI\Exceptions\CNPJNotFound;
 use Illuminate\Support\Facades\Http;
 
 class BrasilAPI

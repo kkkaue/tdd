@@ -16,7 +16,11 @@ class ValidCNPJTest extends TestCase
     {
         Http::fake([
             'https://brasilapi.com.br/api/cnpj/v1/06990590000123' => Http::response(
-                ['descricao_situacao_cadastral' => 'ATIVA'], 200),
+                [
+                    'cnpj' => '06.990.590/0001-23',
+                    'razao_social' => 'Empresa Teste',
+                    'descricao_situacao_cadastral' => 'ATIVA',
+                ], 200),
         ]);
 
         $rule = new ValidCNPJ();
@@ -34,7 +38,11 @@ class ValidCNPJTest extends TestCase
                 [], 404),
 
             'https://brasilapi.com.br/api/cnpj/v1/06990590000125' => Http::response(
-                ['descricao_situacao_cadastral' => 'Inativa'], 200),
+                [
+                    'cnpj' => '06.990.590/0001-25',
+                    'razao_social' => 'Empresa Teste',
+                    'descricao_situacao_cadastral' => 'Inativa',
+                ], 200),
         ]);
 
         $rule = new ValidCNPJ();

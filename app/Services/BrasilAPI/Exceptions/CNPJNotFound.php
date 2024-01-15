@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace App\Services\BrasilAPI\Exceptions;
 
 use Exception;
 

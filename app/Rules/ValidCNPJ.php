@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
-use App\Exceptions\CNPJNotFound;
 use App\Services\BrasilAPI\BrasilAPI;
+use App\Services\BrasilAPI\Exceptions\CNPJNotFound;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Http;
