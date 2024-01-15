@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Services\BrasilAPI\BrasilAPI;
+use App\Services\BrasilAPI\Enum\CNPJSituacaoCadastral;
 use App\Services\BrasilAPI\Exceptions\CNPJNotFound;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -26,7 +27,8 @@ class ValidCNPJ implements ValidationRule
     {
         try {
             $cnpj = (new BrasilAPI)->cnpj($value);
-            if ($cnpj->decricaoSituacaoCadastral !== 'ATIVA') {
+            
+            if ($cnpj->isActive() === false) {
                 $fail("O CNPJ {$value} não está ativo.");
             }
         } catch (CNPJNotFound $e) {

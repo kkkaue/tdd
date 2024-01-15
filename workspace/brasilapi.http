@@ -8,3 +8,7 @@ Accept: application/json
 ###
 GET https://brasilapi.com.br/api/feriados/v1/2024
 Accept: application/json
+
+###
+GET https://brasilapi.com.br/api/cnpj/v1/03060713000139
+Accept: application/json
